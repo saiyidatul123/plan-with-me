@@ -4,7 +4,7 @@ const db = require("../model/helper");
 
 // GET all tasks
 router.get("/", function(req,res){
-    db(`SELECT * FROM tasks`)
+    db(`SELECT * FROM tasks;`)
     .then((results) => {
         res.send(results.data);
     })
@@ -12,7 +12,7 @@ router.get("/", function(req,res){
 })
 
 const getAllTasks = (req,res) => {
-    db(`SELECT * FROM tasks`)
+    db(`SELECT * FROM tasks;`)
     .then((results) => {
         res.send(results.data);
     })
@@ -21,7 +21,7 @@ const getAllTasks = (req,res) => {
 
 // GET one task
 router.get('/:id', function(req,res){
-    db(`SELECT * FROM tasks where id=${req.params.id};`)
+    db(`SELECT * FROM tasks WHERE id=${req.params.id};`)
     .then(results => {
         res.send(results.data);
     })
@@ -30,7 +30,7 @@ router.get('/:id', function(req,res){
 
 // GET one user with user's tasks
 router.get("/user/:user_id", function(req,res){
-    db(`SELECT date, text, complete FROM tasks where user_id=${req.params.user_id};`)
+    db(`SELECT date, text, complete FROM tasks WHERE user_id=${req.params.user_id};`)
     .then(results=>{
         res.send(results.data);
     })
