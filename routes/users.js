@@ -39,6 +39,15 @@ router.post("/", function(req, res) {
     .catch(err => res.status(404).send(err));
 });
 
+// SELECT correct username and password (KIV)
+router.post("/login", function(req,res){
+  db(`SELECT * FROM users WHERE username="${req.params.username}" AND password="${req.params.password}";`)
+  .then((results) => {
+    res.send(results.data);
+  })
+  .catch(() => res.status(404).send("Username and password do not match."))
+})
+
 // DELETE a user from the DB
 router.delete("/:id", function(req, res, next) {
   db(`DELETE FROM users WHERE id=${req.params.id};`)
