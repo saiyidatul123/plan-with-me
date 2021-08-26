@@ -41,6 +41,11 @@ const Register = () => {
   };
 
   return (
+      <div className="reg d-flex">
+          <img
+            src="https://user-images.githubusercontent.com/86279819/130893001-db703098-4dd6-4fb7-be81-8cfecb935cba.png"
+            alt="Hello there!" height="200px" width="200px"
+          />
       <div className="offset-sm-1">
         <form onSubmit={(e) => handleSubmit(e)}>
           <div className="col-sm">
@@ -71,6 +76,7 @@ const Register = () => {
             <button type="button" class="btn btn-warning">SIGN UP</button>
           </div>
         </form>
+      </div>
       </div>
   );
 };
