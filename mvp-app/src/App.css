@@ -1,12 +1,18 @@
 body{
   font-family: 'Courier New', Courier, monospace;
-  background-color: black;
+  background-color: aliceblue;
   display:flex;
+  flex-direction: column;
   justify-content: center;
   /* margin-top: 100px; */
   padding: 100px 0vw;
   /* align-items: center; */
-  color: aliceblue;
+}
+.linkers {
+  display: flex;
+  margin-left: 5vw;
+  justify-content: space-evenly;
+  margin-bottom: 5vw;
 }
 .only-form{
   display: flex;

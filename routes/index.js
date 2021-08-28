@@ -6,6 +6,6 @@ var router = express.Router();
 //   res.send(`Welcome to API \n .../users \n .../tasks \n .../stickers`);
 // });
 router.get("/", (req, res) => {
-  res.send("Welcome to API.../users .../tasks .../stickers");
+  res.send("Welcome to API.../users .../events .../stickers");
 });
 module.exports = router;

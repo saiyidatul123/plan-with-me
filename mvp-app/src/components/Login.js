@@ -48,6 +48,7 @@ const Login = () => {
             name="username"
             className="form-control"
             placeholder="Username"
+            value={input.username}
             aria-label="Username"
             aria-describedby="basic-addon1"
             onChange={(e) => handleChange(e)}
@@ -58,6 +59,7 @@ const Login = () => {
             name="password"
             className="form-control"
             placeholder="Password"
+            value={input.password}
             aria-label="Password"
             aria-describedby="basic-addon1"
             onChange={(e) => handleChange(e)}
