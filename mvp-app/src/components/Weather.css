@@ -1,0 +1,55 @@
+.weather {
+    font-family: monospace;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* min-height: 100vh; */
+    background-color: aliceblue;
+  }
+  
+  h1 {
+    color: black;
+    margin: auto;
+    font-size: 2.5rem;
+    margin-top: 10vh;
+  }
+  .someText {
+    color: black;
+    font-size: 1.5rem;
+    font-style: italic;
+  }
+  .location-input {
+    color: black;
+    font-size: 1.3rem;
+  }
+  input {
+    font-family: monospace;
+    font-size: 1rem;
+    border-radius: 5px;
+  }
+  button {
+    font-family: monospace;
+    font-size: 1rem;
+    background-color: #ffd166;
+    border-radius: 5px;
+    border: 1px solid white;
+    margin: 5px;
+  }
+  button:hover {
+    background-color: #06d6a0;
+  }
+  .weather-output {
+    color: aliceblue;
+    font-size: 1.3rem;
+    display: inline-table;
+    justify-content: center;
+    border: 3px solid #1e2020;
+    background-color: #118ab2;
+    border-radius: 20px;
+    padding: 50px;
+    /* margin: 20px; */
+    height: 100px;
+    width: 300px, auto;
+  }
+  

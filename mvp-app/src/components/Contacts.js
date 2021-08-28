@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-const Register = () => {
+const Contacts = () => {
   let [users, setUsers] = useState([]);
   let [input, setInput] = useState({});
 
@@ -13,7 +13,7 @@ const Register = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     addUser();
-    setInput({ name: "", username: "", password: "" });
+    setInput({ name: "", phone: "", birthday: "" });
   };
 
   const addUser = () => {
@@ -31,8 +31,8 @@ const Register = () => {
           {
             id: data[data.length - 1].id,
             name: input.name,
-            username: input.username,
-            password: input.password,
+            username: input.phone,
+            password: input.birthday,
           },
         ]);
         console.log(data);
@@ -41,11 +41,7 @@ const Register = () => {
   };
 
   return (
-      <div className="reg d-flex">
-          <img
-            src="https://user-images.githubusercontent.com/86279819/130893001-db703098-4dd6-4fb7-be81-8cfecb935cba.png"
-            alt="Hello there!" height="200px" width="200px"
-          />
+      <div className="d-flex">
       <div className="offset-sm-1">
         <form onSubmit={(e) => handleSubmit(e)}>
           <div className="col-sm">
@@ -60,28 +56,29 @@ const Register = () => {
             <br/>
             <input
               type="text"
-              name="username"
+              name="phone"
               className="form-control"
-              placeholder="Username"
-              value={input.username}
+              placeholder="Phone number"
+              value={input.phone}
               onChange={(e) => handleChange(e)}
             />
             <br></br>
             <input
               type="text"
-              name="password"
+              name="birthday"
               className="form-control"
-              placeholder="Password"
-              value={input.password}
+              placeholder="Birthday"
+              value={input.birthday}
               onChange={(e) => handleChange(e)}
             />
             <br></br>
-            <button type="button" class="btn btn-warning">SIGN UP</button>
+            <button type="button" className="btn btn-warning">ADD CONTACT</button>
           </div>
         </form>
+        {users.map(e => e.name)}
       </div>
       </div>
   );
 };
 
-export default Register;
+export default Contacts;
