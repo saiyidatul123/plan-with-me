@@ -1,0 +1,40 @@
+.contacts {
+  margin-top: 0vw;
+  display: flex;
+  justify-content: center;
+}
+
+.side-b {
+  border: 1px solid white;
+  border-radius: 20px;
+  padding: 2vw;
+  background: #43C6AC;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #191654, #43C6AC);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #191654, #43C6AC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  box-shadow: 5px 5px #888888;
+  display: flex;
+  flex-direction: column;
+
+}
+.contact-list {
+  margin-left: 5vw;
+}
+
+.cont {
+  border: 1px solid;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  padding: 2vw;
+  background-color: #ffb703;
+  box-shadow: 5px 5px #888888;
+  height: auto;
+  width: auto;
+}
+
+.cont:hover {
+  background-color: #2a9d8f;
+  color: aliceblue;
+  box-shadow: 5px 5px #888888;
+}

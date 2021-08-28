@@ -1,0 +1,8 @@
+.del-btn {
+  cursor: pointer;
+  /* border: 1px solid; */
+}
+
+.del-btn:hover {
+  background-color: #ffd166;
+}

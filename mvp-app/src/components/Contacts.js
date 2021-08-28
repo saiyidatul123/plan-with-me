@@ -1,22 +1,33 @@
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./Contacts.css";
 
 const Contacts = () => {
-  let [users, setUsers] = useState([]);
+  let [contacts, setContacts] = useState([]);
   let [input, setInput] = useState({});
+
+  useEffect(() => {
+    getContacts();
+  }, []);
+
+  const getContacts = () => {
+    fetch("/users")
+      .then((response) => response.json())
+      .then((contacts) => {
+        setContacts(contacts);
+        console.log(contacts);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   const handleChange = (event) => {
     const value = event.target.value;
     setInput({ ...input, [event.target.name]: value });
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    addUser();
-    setInput({ name: "", phone: "", birthday: "" });
-  };
-
-  const addUser = () => {
+  const addContact = () => {
     fetch("/users", {
       method: "POST",
       headers: {
@@ -24,60 +35,92 @@ const Contacts = () => {
       },
       body: JSON.stringify(input),
     })
-      .then((response) => response.jason())
+      .then((response) => response.json())
       .then((data) => {
-        setUsers([
-          ...users,
+        setContacts([
+          ...contacts,
           {
             id: data[data.length - 1].id,
             name: input.name,
-            username: input.phone,
-            password: input.birthday,
+            phone: input.phone,
+            birthday: input.birthday,
           },
         ]);
-        console.log(data);
+      })
+  };
+
+  const deleteContact = (id) => {
+    fetch(`/users/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // setContacts(events.filter(e => e.id !== id))
+        setContacts(data);
       })
       .catch((err) => console.log(err));
   };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    addContact();
+    setInput({ name: "", phone: "", birthday: ""});
+  };
 
   return (
+    <div className="contacts">
       <div className="d-flex">
-      <div className="offset-sm-1">
-        <form onSubmit={(e) => handleSubmit(e)}>
-          <div className="col-sm">
-            <input
-              type="text"
-              name="name"
-              className="form-control"
-              placeholder="Name"
-              value={input.name}
-              onChange={(e) => handleChange(e)}
-            />
-            <br/>
-            <input
-              type="text"
-              name="phone"
-              className="form-control"
-              placeholder="Phone number"
-              value={input.phone}
-              onChange={(e) => handleChange(e)}
-            />
-            <br></br>
-            <input
-              type="text"
-              name="birthday"
-              className="form-control"
-              placeholder="Birthday"
-              value={input.birthday}
-              onChange={(e) => handleChange(e)}
-            />
-            <br></br>
-            <button type="button" className="btn btn-warning">ADD CONTACT</button>
-          </div>
-        </form>
-        {users.map(e => e.name)}
+        <div className="side-b">
+          <img src="https://user-images.githubusercontent.com/86279819/131229738-08430096-eaab-4bf3-9e3a-8cdbfd465332.png" />
+          <form onSubmit={(e) => handleSubmit(e)}>
+            <div className="col-sm">
+              <input
+                type="text"
+                name="name"
+                className="form-control"
+                placeholder="Name"
+                value={input.name}
+                onChange={(e) => handleChange(e)}
+              />
+              <br />
+              <input
+                type="text"
+                name="phone"
+                className="form-control"
+                placeholder="Phone number"
+                value={input.phone}
+                onChange={(e) => handleChange(e)}
+              />
+              <br></br>
+              <input
+                type="text"
+                name="birthday"
+                className="form-control"
+                placeholder="Birthday(Month-Day)"
+                value={input.birthday}
+                onChange={(e) => handleChange(e)}
+              />
+              <br></br>
+              <button className="btn btn-warning">
+                ADD CONTACT
+              </button>
+            </div>
+          </form>
+        </div>
+        <div className="contact-list">
+          {contacts.map((e) => (
+            <div className="cont">
+              <p>Name: {e.name}</p>
+              <p>Phone number:{e.phone}</p>
+              <p>Birthday:{e.birthday}</p>
+              <button onClick={() => deleteContact(e.id)}>delete</button>
+            </div>
+          ))}
+        </div>
       </div>
-      </div>
+    </div>
   );
 };
 

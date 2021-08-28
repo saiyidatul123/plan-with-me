@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Calendar.css";
 import { format, subHours, startOfMonth } from "date-fns";
+import moment from 'moment';
 import {
   MonthlyBody,
   MonthlyDay,
@@ -19,7 +20,7 @@ const Calendar = () => {
     { title: "Merdeka Day", date: new Date("2021-08-31") },
   ];
   let [currentMonth, setCurrentMonth] = useState(startOfMonth(new Date()));
-  let [events, setEvents] = useState([]);
+  let [events, setEvents] = useState(defaultEvents);
   let [input, setInput] = useState([]);
 
   useEffect(() => {
@@ -28,12 +29,12 @@ const Calendar = () => {
 
   const getEvents = () => {
     fetch("/events")
-      .then(response => response.json())
-      .then(students => {
+      .then((response) => response.json())
+      .then((events) => {
         setEvents(events);
         console.log(events);
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
       });
   };
@@ -72,6 +73,21 @@ const Calendar = () => {
         ]);
       });
   };
+
+  const deleteEvent = id => {
+    fetch(`/events/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then(response => response.json())
+      .then(data => {
+        // setEvents(events.filter(e => e.id !== id))
+        setEvents(data);
+      })
+      .catch(err => console.log(err));
+  };
   return (
     <div>
       <MonthlyCalendar
@@ -95,17 +111,16 @@ const Calendar = () => {
         </MonthlyBody>
       </MonthlyCalendar>
       <br />
-      <form onSubmit={e => handleSubmit(e)}>
-      <table className="table table-hover">
-        <thead>
-          <tr className="table-auto">
-            <th>Date</th>
-            <th>Event</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>{events.map((e) => (e.title))}</tr>
+      <form onSubmit={(e) => handleSubmit(e)}>
+        <table className="table table-hover">
+          <thead>
+            <tr className="table-auto">
+              <th>Date</th>
+              <th>Event</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
             <tr>
               <td width="10">
                 <input
@@ -125,10 +140,17 @@ const Calendar = () => {
                   style={{ width: "100%" }}
                 />
               </td>
-              <td>&times;</td>
+              <td></td>
             </tr>
-        </tbody>
-      </table>
+            {events.map((e) => (
+              <tr>
+                <td>{}</td>
+                <td>{e.title}</td>
+                <td className="del-btn" style={{ width: "1%" }}onClick={()=>deleteEvent(e.id)}>&times;</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </form>
     </div>
   );

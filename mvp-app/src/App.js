@@ -12,13 +12,52 @@ function App() {
     <body>
       <Router>
         <div className="linkers">
-        <Link to="/"><img src="https://image.flaticon.com/icons/png/512/616/616475.png" height="50" width="50"/>
-        </Link>
-        <Link to="/contacts"><img src="https://image.flaticon.com/icons/png/512/3771/3771518.png" height="50" width="50"/>
-        </Link>
-        <Link to="/news"> <img src="https://image.flaticon.com/icons/png/512/2965/2965879.png" height="50" width="50"/></Link><Link to="/mood-tracker"> <img src="https://image.flaticon.com/icons/png/512/3174/3174845.png" height="50" width="50"/></Link>
-        <Link to="/chatbot"> <img src="https://image.flaticon.com/icons/png/512/4233/4233830.png" height="50" width="50"/></Link>
-        <Link to="/weather"> <img src="https://image.flaticon.com/icons/png/512/1182/1182992.png" height="50" width="50"/></Link>
+          <Link to="/">
+            <img
+              src="https://image.flaticon.com/icons/png/512/616/616475.png"
+              height="50"
+              width="50"
+            />
+          </Link>
+          <Link to="/contacts">
+            <img
+              src="https://image.flaticon.com/icons/png/512/3771/3771518.png"
+              height="50"
+              width="50"
+            />
+          </Link>
+          <Link to="/weather">
+            {" "}
+            <img
+              src="https://image.flaticon.com/icons/png/512/1182/1182992.png"
+              height="50"
+              width="50"
+            />
+          </Link>
+          <Link to="/news">
+            {" "}
+            <img
+              src="https://image.flaticon.com/icons/png/512/2965/2965879.png"
+              height="50"
+              width="50"
+            />
+          </Link>
+          <Link to="/mood-tracker">
+            {" "}
+            <img
+              src="https://image.flaticon.com/icons/png/512/3174/3174845.png"
+              height="50"
+              width="50"
+            />
+          </Link>
+          <Link to="/chatbot">
+            {" "}
+            <img
+              src="https://image.flaticon.com/icons/png/512/4233/4233830.png"
+              height="50"
+              width="50"
+            />
+          </Link>
         </div>
         <Route path="/news" exact component={News} />
         <Route path="/contacts" exact component={Contacts} />

@@ -39,7 +39,7 @@ router.post("/", function(req,res){
 
 // UPDATE everything in event
 router.put("/:id", function(req,res){
-    db(`UPDATE events SET date="${req.body.date}", event="${req.body.title}";`)
+    db(`UPDATE events SET date="${req.body.date}", title="${req.body.title}";`)
     .then(()=> {
         getAllEvents(req,res);
     })
