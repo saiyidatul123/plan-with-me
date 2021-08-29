@@ -31,7 +31,7 @@ export default function Weather() {
   };
 
   // call Open Weather API
-  const API_KEY = "e827e68d95c04b3b658732d709085c6e";
+  const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
   const WEATHER_URL = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${API_KEY}`;
 
   //async @ await
