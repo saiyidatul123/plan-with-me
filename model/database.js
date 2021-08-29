@@ -19,10 +19,10 @@ con.connect(function(err) {
   console.log("Connected!");
 
   let sql =
-    "DROP TABLE IF EXISTS users; DROP TABLE IF EXISTS events; DROP TABLE IF EXISTS stickers; CREATE TABLE users (id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, name VARCHAR(100), username VARCHAR(15), password VARCHAR(15)); CREATE TABLE events (id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, date DATE, event VARCHAR(40)); CREATE TABLE stickers (id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, title VARCHAR(40), url VARCHAR(2083), creator VARCHAR(40), theme VARCHAR(40));";
+    "DROP TABLE IF EXISTS users; DROP TABLE IF EXISTS events; DROP TABLE IF EXISTS stickers; CREATE TABLE users (id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, name VARCHAR(100), phone VARCHAR(15), birthday VARCHAR(15)); CREATE TABLE events (id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, date VARCHAR(40), title VARCHAR(40)); CREATE TABLE stickers (id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, title VARCHAR(40), url VARCHAR(2083), creator VARCHAR(40), theme VARCHAR(40));";
   con.query(sql, function(err, result) {
     if (err) throw err;
-    console.log("Table creation `users, tasks, stickers` were successful!");
+    console.log("Table creation `users, events, stickers` were successful!");
 
     console.log("Closing...");
   });
