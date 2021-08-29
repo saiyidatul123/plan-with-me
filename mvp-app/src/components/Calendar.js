@@ -67,7 +67,7 @@ const Calendar = () => {
           ...events,
           {
             id: data[data.length - 1].id,
-            date: input.date,
+            date: [input.date],
             title: input.title,
           },
         ]);
@@ -103,7 +103,7 @@ const Calendar = () => {
                   key={index}
                   title={item.title}
                   // Format the date here to be in the format you prefer
-                  date={format(item.date, "k:mm")}
+                  date={format(item.date, 'k:mm')}
                 />
               ))
             }
@@ -144,9 +144,9 @@ const Calendar = () => {
             </tr>
             {events.map((e) => (
               <tr>
-                <td>{}</td>
+                <td>{e.date}</td>
                 <td>{e.title}</td>
-                <td className="del-btn" style={{ width: "1%" }}onClick={()=>deleteEvent(e.id)}>&times;</td>
+                <td className="del-btn" style={{ width: "1%" }} onClick={()=>deleteEvent(e.id)}>&times;</td>
               </tr>
             ))}
           </tbody>
