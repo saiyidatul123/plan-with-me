@@ -40,7 +40,7 @@ router.post("/", function(req, res) {
 });
 
 
-// DELETE a user from the DB
+// DELETE a contact from the DB
 router.delete("/:id", function(req, res, next) {
   db(`DELETE FROM contacts WHERE id=${req.params.id};`)
     .then(() => {
