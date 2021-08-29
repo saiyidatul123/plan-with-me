@@ -4,37 +4,37 @@ const db = require("../model/helper");
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  db("SELECT * FROM users;")
+  db("SELECT * FROM contacts;")
   .then(results => {
     res.send(results.data);
   })
   .catch(err => res.status(500).send(err));
 });
 
-const getAllUsers = (req, res) => {
-  db("SELECT * FROM users;")
+const getAllContacts = (req, res) => {
+  db("SELECT * FROM contacts;")
   .then(results => {
     res.send(results.data);
   })
   .catch(err => res.status(500).send(err));
 };
 
-// GET one user
+// GET one contact
 router.get("/:id", function(req, res){
-  db(`SELECT * FROM users where id=${req.params.id};`)
+  db(`SELECT * FROM contacts where id=${req.params.id};`)
     .then((results) => {
       res.send(results.data);
     })
-    .catch(err => res.status(404).send("user not found"));
+    .catch(err => res.status(404).send("contact not found"));
 })
 
-// INSERT a new user into the DB
+// INSERT a new contact
 router.post("/", function(req, res) {
   db(
-    `INSERT INTO users (name,phone,birthday) VALUES ("${req.body.name}","${req.body.phone}","${req.body.birthday}");`
+    `INSERT INTO contacts (name,phone,birthday) VALUES ("${req.body.name}","${req.body.phone}","${req.body.birthday}");`
   )
     .then(() => {
-      getAllUsers(req, res);
+      getAllContacts(req, res);
     })
     .catch(err => res.status(404).send(err));
 });
@@ -42,9 +42,9 @@ router.post("/", function(req, res) {
 
 // DELETE a user from the DB
 router.delete("/:id", function(req, res, next) {
-  db(`DELETE FROM users WHERE id=${req.params.id};`)
+  db(`DELETE FROM contacts WHERE id=${req.params.id};`)
     .then(() => {
-      getAllUsers(req, res);
+      getAllContacts(req, res);
     })
     .catch(err => res.status(404).send(err));
 });

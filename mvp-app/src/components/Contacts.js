@@ -11,7 +11,7 @@ const Contacts = () => {
   }, []);
 
   const getContacts = () => {
-    fetch("/users")
+    fetch("/contacts")
       .then((response) => response.json())
       .then((contacts) => {
         setContacts(contacts);
@@ -28,7 +28,7 @@ const Contacts = () => {
   };
 
   const addContact = () => {
-    fetch("/users", {
+    fetch("/contacts", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -50,7 +50,7 @@ const Contacts = () => {
   };
 
   const deleteContact = (id) => {
-    fetch(`/users/${id}`, {
+    fetch(`/contacts/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
