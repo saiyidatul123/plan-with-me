@@ -103,9 +103,11 @@ const Contacts = () => {
                 onChange={(e) => handleChange(e)}
               />
               <br></br>
+              <div className="text-center">
               <button className="btn btn-warning">
                 ADD CONTACT
               </button>
+              </div>
             </div>
           </form>
         </div>
