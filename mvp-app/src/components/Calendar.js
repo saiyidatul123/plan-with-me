@@ -20,7 +20,7 @@ const Calendar = () => {
     { title: "Merdeka Day", date: new Date("2021-08-31") },
   ];
   let [currentMonth, setCurrentMonth] = useState(startOfMonth(new Date()));
-  let [events, setEvents] = useState(defaultEvents);
+  let [events, setEvents] = useState([]);
   let [input, setInput] = useState([]);
 
   useEffect(() => {
