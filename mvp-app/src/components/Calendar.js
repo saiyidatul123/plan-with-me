@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Calendar.css";
 import { format, subHours, startOfMonth } from "date-fns";
-import moment from 'moment';
+import moment from "moment";
 import {
   MonthlyBody,
   MonthlyDay,
@@ -50,7 +50,7 @@ const Calendar = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     addEvent();
-    setInput({ date: "", title: "" });
+    setInput({ date: "", title: "", time: "" });
   };
 
   const addEvent = () => {
@@ -67,26 +67,27 @@ const Calendar = () => {
           ...events,
           {
             id: data[data.length - 1].id,
-            date: [input.date],
+            date: new Date(input.date),
+            // time: input.time.toString(),
             title: input.title,
           },
         ]);
       });
   };
 
-  const deleteEvent = id => {
+  const deleteEvent = (id) => {
     fetch(`/events/${id}`, {
       method: "DELETE",
       headers: {
-        "Content-Type": "application/json"
-      }
+        "Content-Type": "application/json",
+      },
     })
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         // setEvents(events.filter(e => e.id !== id))
         setEvents(data);
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   };
   return (
     <div>
@@ -103,7 +104,7 @@ const Calendar = () => {
                   key={index}
                   title={item.title}
                   // Format the date here to be in the format you prefer
-                  date={format(item.date, 'k:mm')}
+                  date={format(item.date, "k:mm")}
                 />
               ))
             }
@@ -116,6 +117,7 @@ const Calendar = () => {
           <thead>
             <tr className="table-auto">
               <th>Date</th>
+              {/* <th>Time</th> */}
               <th>Event</th>
               <th></th>
             </tr>
@@ -130,6 +132,14 @@ const Calendar = () => {
                   onChange={(e) => handleChange(e)}
                 />
               </td>
+              {/* <td width="10">
+                <input
+                  type="time"
+                  name="time"
+                  value={input.time}
+                  onChange={(e) => handleChange(e)}
+                />
+              </td> */}
               <td>
                 <input
                   type="text"
@@ -145,8 +155,15 @@ const Calendar = () => {
             {events.map((e) => (
               <tr>
                 <td>{e.date}</td>
+                {/* <td>{e.time}</td> */}
                 <td>{e.title}</td>
-                <td className="del-btn" style={{ width: "1%" }} onClick={()=>deleteEvent(e.id)}>&times;</td>
+                <td
+                  className="del-btn"
+                  style={{ width: "1%" }}
+                  onClick={() => deleteEvent(e.id)}
+                >
+                  &times;
+                </td>
               </tr>
             ))}
           </tbody>
