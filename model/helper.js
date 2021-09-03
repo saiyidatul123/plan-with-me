@@ -15,7 +15,7 @@ module.exports = async function db(query) {
     const con = mysql.createConnection({
       host: DB_HOST || "127.0.0.1",
       user: DB_USER || "root",
-      password: DB_PASS,
+      password: DB_PASS || "Mysql93949602",
       database: DB_NAME || "mvp",
       multipleStatements: true
     });

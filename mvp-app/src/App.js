@@ -3,14 +3,41 @@ import Contacts from "./components/Contacts";
 import Calendar from "./components/Calendar";
 import News from "./components/News";
 import Weather from "./components/Weather";
+import Pomodoro from "./components/Pomodoro"
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-
+import axios from "axios";
 function App() {
+  const  [image, setImage] = useState("");
+  
+  useEffect(()=>{
+    getImage();
+  })
+
+
+  const getImage = (count = 1)=>{
+  const apiRoot = "https://api.unsplash.com";
+  const accessKey= "_FPMADePVL7dTfO_vuGSz0lKqQx_7pMygYi9wvBZzeI";
+    axios
+    .get(`${apiRoot}/photos/random/?client_id=${accessKey}&count=1`)
+      .then((response)=>{
+//        setImage(response.data.urls.full);
+ //       console.log(response.data.urls.full);
+        return response.data;
+        
+      })
+      .then((data)=>{
+        setImage(data[0].urls.full);
+      })
+  }
+
+
+
   return (
-    <div>
     <body>
+    <div>
+    <header>
       <Router>
         <div className="linkers">
           <Link to="/">
@@ -31,7 +58,7 @@ function App() {
             {" "}
             <img
               src="https://image.flaticon.com/icons/png/512/1182/1182992.png"
-              height="50"
+              height="10"
               width="50"
             />
           </Link>
@@ -39,7 +66,7 @@ function App() {
             {" "}
             <img
               src="https://image.flaticon.com/icons/png/512/2965/2965879.png"
-              height="50"
+              height="10"
               width="50"
             />
           </Link>
@@ -47,7 +74,7 @@ function App() {
             {" "}
             <img
               src="https://image.flaticon.com/icons/png/512/3174/3174845.png"
-              height="50"
+              height="10"
               width="50"
             />
           </Link>
@@ -55,21 +82,35 @@ function App() {
             {" "}
             <img
               src="https://image.flaticon.com/icons/png/512/4233/4233830.png"
-              height="50"
+              height="10"
+              width="50"
+            />
+          </Link>
+          <Link to="/pomodoro">
+            {" "}
+            <img
+              src="https://image.flaticon.com/icons/png/512/2553/2553210.png"
+              height="10"
               width="50"
             />
           </Link>
         </div>
         <Route path="/news" exact component={News} />
         <Route path="/contacts" exact component={Contacts} />
-        <Route path="/" exact component={Calendar} />
+        <Route path="/calendar" exact component={Calendar} />
         <Route path="/weather" exact component={Weather} />
+        <Route path="/" exact component={Pomodoro} />
       </Router>
-    </body>
-    <footer>
-    <center><div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div></center>
-    </footer>
+    </header>
+    <div className="container-fluid">
+      <img src={image} className="img-fluid"/>
     </div>
+    {/* <footer>
+    <center><div><small>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></small></div></center>
+    </footer> */}
+    </div>
+
+    </body>
   );
 }
 

@@ -5,7 +5,7 @@ body{
   flex-direction: column;
   justify-content: center;
   /* margin-top: 100px; */
-  padding: 100px 0vw;
+  padding: 20px 0vw;
   /* align-items: center; */
 }
 .linkers {
@@ -17,7 +17,7 @@ body{
 }
 .only-form{
   display: flex;
-  padding-top: 20px;
+  padding-top: 10px;
 }
 /* .App { */
   /* background-color: #282c34;
