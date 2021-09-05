@@ -9,7 +9,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import axios from "axios";
 function App() {
-  const  [image, setImage] = useState("");
+  /* const  [image, setImage] = useState("");
   
   useEffect(()=>{
     getImage();
@@ -30,14 +30,14 @@ function App() {
       .then((data)=>{
         setImage(data[0].urls.full);
       })
-  }
+  } */
 
 
 
   return (
     <body>
-    <div>
-    <header>
+      <div>
+    {/* <header>
       <Router>
         <div className="linkers">
           <Link to="/">
@@ -104,12 +104,12 @@ function App() {
     </header>
     <div className="container-fluid">
       <img src={image} className="img-fluid"/>
-    </div>
+    </div> */}
     {/* <footer>
     <center><div><small>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></small></div></center>
     </footer> */}
-    </div>
-
+    </div> 
+    <Pomodoro/>
     </body>
   );
 }
