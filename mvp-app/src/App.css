@@ -1,20 +1,35 @@
-body{
-  font-family: 'Courier New', Courier, monospace;
-  background-color: #d8f3dc;
-  display:flex;
+body,html{
+/*   font-family: 'Courier New', Courier, monospace;
+ */  /*background-color: #d8f3dc;*/
+  /* display:flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: center; */
   /* margin-top: 100px; */
-  padding: 20px 0vw;
+  /* padding: 20px 0vw; */
   /* align-items: center; */
-}
+  background-image: url("https://api.unsplash.com/photos/random/?client_id=_FPMADePVL7dTfO_vuGSz0lKqQx_7pMygYi9wvBZzeI&count=1")no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 100%;
+    margin: 0;
+  }
+  /* background-repeat: no-repeat;
+  background-size: cover;
+  display: flex; */
+
+/* .container-fluid{
+
+ height: 100%; 
+} */
 .linkers {
   display: flex;
   margin-left: 5vw;
   margin-right: 5vw;
   justify-content: space-between;
   margin-bottom: 5vw;
-}
+} 
 .only-form{
   display: flex;
   padding-top: 10px;
@@ -35,3 +50,14 @@ body{
   display: flex;
   flex-direction: column;
 } */
+
+.pomodoro1{
+  position: fixed;
+  z-index: 3;
+  border: 2px solid yellow;
+  top: 37%;
+  left: 38%;
+  background: #f5f5f58f;
+  border-radius: 25px;
+  text-align: center;
+}

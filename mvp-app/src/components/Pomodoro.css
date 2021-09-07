@@ -1,0 +1,20 @@
+.card-body{
+margin-top: 117px;
+margin-right: -19px;
+/* padding: 26px; */
+}
+.pomodoro1{
+    position: fixed;
+    z-index: 3;
+    border: 2px solid yellow;
+    top: 37%;
+    left: 38%;
+    background: #f5f5f58f;
+    border-radius: 25px;
+    text-align: center;
+}
+
+.timer {
+    font-size: medium;
+
+}

@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import Setting from './Setting';
+import React, { useState, useEffect } from "react";
+import Setting from "./Setting";
 
 function Home() {
 	const [minutes, setMinutes] = useState(0); //track minute counter
@@ -7,7 +7,7 @@ function Home() {
 	const [displayMessage, setDisplayMessage] = useState(false);
 	//let [inputTime, setInputTime] = useState("");
 	const [start, setStart] = useState(false);
-    const[setting,setSetting] = useState(false);
+	const [setting, setSetting] = useState(false);
 	useEffect(() => {
 		if (start) {
 			let interval = setTimeout(() => {
@@ -53,7 +53,6 @@ function Home() {
 				setSeconds(secondsOne);
 				setMinutes(minutesOne);
 				setDisplayMessage(!displayMessage); //
-
 			}
 		} else {
 			// setSeconds(seconds - 1); //if second is not === 0 lower them by 1
@@ -63,40 +62,38 @@ function Home() {
 	};
 
 	return (
-		<div className="container">
-			<h1>Pomodoro</h1>
-			<span>
-				<button 
-                onClick={()=> setSetting(true)}          
-                >Setting</button>
-			</span>
-			<div className="pomodoro">
-				<div className="message">
-					{displayMessage && <div>Break time!</div>}
-				</div>
-				<div className="timer">
-					<button
-						type="button"
-						className="btn btn-primary btn-lg"
-						onClick={startTime}
-					>
-						Start
-					</button>
-                    <button type="button" className="btn btn-primary btn-lg" onClick={()=> setStart(false)}>Pause</button>
-					{timerMinutes}:{timerSeconds} 
-
-                    <Setting
-                    trigger={setting}
-                    setTrigger={setSetting}
-                    ></Setting>
-
-
-
-
+		<div className="pomodoro1">
+			<div className="card-body">
+				<h1>Pomodoro</h1>
+				<span>
+					<button onClick={() => setSetting(true)}>Setting</button>
+				</span>
+				<div className="pomodoro">
+					<div className="message">
+						{displayMessage && <div>Break time!</div>}
+					</div>
+					<div className="timer">
+						<button
+							type="button"
+							className="btn btn-primary btn-lg"
+							onClick={startTime}
+						>
+							Start
+						</button>
+						<button
+							type="button"
+							className="btn btn-primary btn-lg"
+							onClick={() => setStart(false)}
+						>
+							Pause
+						</button><br/>
+                        <h1>{timerMinutes}:{timerSeconds}</h1>
+						<Setting trigger={setting} setTrigger={setSetting}></Setting>
+					</div>
 				</div>
 			</div>
 		</div>
 	);
 }
 
-export default Home
+export default Home;

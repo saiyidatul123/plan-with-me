@@ -8,110 +8,142 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import axios from "axios";
+//import { Container } from '@material-ui/core';
+
+
 function App() {
-  /* const  [image, setImage] = useState("");
-  
-  useEffect(()=>{
-    getImage();
-  })
+	const [image, setImage] = useState("");
+	const [qoutes,setQoutes] = useState("");
+	const [author,setAuthor] = useState("");
+
+	useEffect(() => {
+		getImage();
+		getQoute();
+	});
+
+	/* useEffect(()=>{
+		getQoute();
+	}) */
+
+	const getImage = (count = 1) => {
+		const apiRoot = "https://api.unsplash.com";
+		const accessKey = "_FPMADePVL7dTfO_vuGSz0lKqQx_7pMygYi9wvBZzeI";
+		axios
+			.get(`${apiRoot}/photos/random/?client_id=${accessKey}&count=1`)
+			.then((response) => {
+				//        setImage(response.data.urls.full);
+				//       console.log(response.data.urls.full);
+				return response.data;
+			})
+			.then((data) => {
+				setImage(data[0].urls.full);
+			});
+	};
+
+	const getQoute = () =>{
+		//author = data.a;
+		//qoutes = data.q;
+		let url= "https://zenquotes.io/api/random";
+		axios
+			.get(url)
+			.then((response)=>{
+				console.log(response);
+				setQoutes(response.data.q)				
+			})
+			/* .then((data)=>{
+				setQoutes(data.q)
+			}); */
+	};
+
+	const handleClick = ()=>{
+		getQoute();
+	}
+	return (
+		<div className="container-fluid">
+			<img src={image} className="img-fluid" />
+			 <Router>
+				<div className="fixed-top">
+					<div className="card-header">
+						<div className="linkers">
+							<Link to="/calendar">
+								<img
+									src="https://image.flaticon.com/icons/png/512/616/616475.png"
+									height="50"
+									width="50"
+								/>
+							</Link>
+							<Link to="/contacts">
+								<img
+									src="https://image.flaticon.com/icons/png/512/3771/3771518.png"
+									height="50"
+									width="50"
+								/>
+							</Link>
+							<Link to="/weather">
+								{" "}
+								<img
+									src="https://image.flaticon.com/icons/png/512/1182/1182992.png"
+									height="10"
+									width="50"
+								/>
+							</Link>
+							<Link to="/news">
+								{" "}
+								<img
+									src="https://image.flaticon.com/icons/png/512/2965/2965879.png"
+									height="10"
+									width="50"
+								/>
+							</Link>
+							<Link to="/mood-tracker">
+								{" "}
+								<img
+									src="https://image.flaticon.com/icons/png/512/3174/3174845.png"
+									height="10"
+									width="50"
+								/>
+							</Link>
+							<Link to="/chatbot">
+								{" "}
+								<img
+									src="https://image.flaticon.com/icons/png/512/4233/4233830.png"
+									height="10"
+									width="50"
+								/>
+							</Link>
+							<Link to="/pomodoro"> {/* link to pomodoro */}
+								{" "}
+								<img
+									src="https://image.flaticon.com/icons/png/512/2553/2553210.png"
+									height="10"
+									width="50"
+								/>
+							</Link>
+						</div>
+					</div>
+				</div>
+					<Route path="/news" exact component={News} />
+					<Route path="/contacts" exact component={Contacts} />
+					<Route path="/calendar" exact component={Calendar} />
+					<Route path="/weather" exact component={Weather} />
+					<Route path="/pomodoro" exact component={Pomodoro} />
+			</Router>
+
+			{/* <button onClick={handleClick}>
+				Get Qoute
+			</button>
+				{qoutes} */}
 
 
-  const getImage = (count = 1)=>{
-  const apiRoot = "https://api.unsplash.com";
-  const accessKey= "_FPMADePVL7dTfO_vuGSz0lKqQx_7pMygYi9wvBZzeI";
-    axios
-    .get(`${apiRoot}/photos/random/?client_id=${accessKey}&count=1`)
-      .then((response)=>{
-//        setImage(response.data.urls.full);
- //       console.log(response.data.urls.full);
-        return response.data;
-        
-      })
-      .then((data)=>{
-        setImage(data[0].urls.full);
-      })
-  } */
-
-
-
-  return (
-    <body>
-      <div>
-    {/* <header>
-      <Router>
-        <div className="linkers">
-          <Link to="/">
-            <img
-              src="https://image.flaticon.com/icons/png/512/616/616475.png"
-              height="50"
-              width="50"
-            />
-          </Link>
-          <Link to="/contacts">
-            <img
-              src="https://image.flaticon.com/icons/png/512/3771/3771518.png"
-              height="50"
-              width="50"
-            />
-          </Link>
-          <Link to="/weather">
-            {" "}
-            <img
-              src="https://image.flaticon.com/icons/png/512/1182/1182992.png"
-              height="10"
-              width="50"
-            />
-          </Link>
-          <Link to="/news">
-            {" "}
-            <img
-              src="https://image.flaticon.com/icons/png/512/2965/2965879.png"
-              height="10"
-              width="50"
-            />
-          </Link>
-          <Link to="/mood-tracker">
-            {" "}
-            <img
-              src="https://image.flaticon.com/icons/png/512/3174/3174845.png"
-              height="10"
-              width="50"
-            />
-          </Link>
-          <Link to="/chatbot">
-            {" "}
-            <img
-              src="https://image.flaticon.com/icons/png/512/4233/4233830.png"
-              height="10"
-              width="50"
-            />
-          </Link>
-          <Link to="/pomodoro">
-            {" "}
-            <img
-              src="https://image.flaticon.com/icons/png/512/2553/2553210.png"
-              height="10"
-              width="50"
-            />
-          </Link>
-        </div>
-        <Route path="/news" exact component={News} />
-        <Route path="/contacts" exact component={Contacts} />
-        <Route path="/calendar" exact component={Calendar} />
-        <Route path="/weather" exact component={Weather} />
-        <Route path="/" exact component={Pomodoro} />
-      </Router>
-    </header>
-    <div className="container-fluid">
-      <img src={image} className="img-fluid"/>
-    </div> */}
-    {/* <footer>
+{/* 			<footer>Inspirational quotes provided by <a href="https://zenquotes.io/" target="_blank">ZenQuotes API</a></footer>
+ */}			{/* <div className="container-fluid"> */}
+			{/* <Pomodoro /> */}
+			{/* </div>   */}
+			{/*  <footer>
     <center><div><small>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></small></div></center>
     </footer> */}
-    </div> 
-    <Pomodoro/>
-    </body>
-  );
+		</div>
+	);
 }
 
 export default App;
