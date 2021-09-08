@@ -13,17 +13,19 @@ import axios from "axios";
 
 function App() {
 	const [image, setImage] = useState("");
-	const [qoutes,setQoutes] = useState("");
+	const [quotes,setQuotes] = useState("");
 	const [author,setAuthor] = useState("");
 
 	useEffect(() => {
 		getImage();
-		getQoute();
-	});
+		//getQuote();
+	},[]);
 
-	/* useEffect(()=>{
-		getQoute();
-	}) */
+	 useEffect(()=>{
+		
+		getQuote();
+
+	},[]) ; //must put an empty [] //to take in state variable,//just run once
 
 	const getImage = (count = 1) => {
 		const apiRoot = "https://api.unsplash.com";
@@ -40,28 +42,31 @@ function App() {
 			});
 	};
 
-	const getQoute = () =>{
+	const getQuote = () =>{
 		//author = data.a;
 		//qoutes = data.q;
-		let url= "https://zenquotes.io/api/random";
+		let url= "https://quote-garden.herokuapp.com/api/v3/quotes/random";
 		axios
 			.get(url)
 			.then((response)=>{
-				console.log(response);
-				setQoutes(response.data.q)				
+				//console.log(response);
+				setQuotes(response.data.data[0].quoteText);
+				//return response.data.data[0].quoteText;				
+				//console.log(data.data.data[0].quoteText);
 			})
 			/* .then((data)=>{
-				setQoutes(data.q)
+				//setQuotes(dataquoteText);
+				console.log(data.data.data[0].quoteText);
 			}); */
 	};
 
 	const handleClick = ()=>{
-		getQoute();
+		getQuote();
 	}
 	return (
 		<div className="container-fluid">
 			<img src={image} className="img-fluid" />
-			 <Router>
+			<Router>
 				<div className="fixed-top">
 					<div className="card-header">
 						<div className="linkers">
@@ -111,8 +116,9 @@ function App() {
 									width="50"
 								/>
 							</Link>
-							<Link to="/pomodoro"> {/* link to pomodoro */}
+							<Link to="/pomodoro">
 								{" "}
+								{/* link to pomodoro */}{" "}
 								<img
 									src="https://image.flaticon.com/icons/png/512/2553/2553210.png"
 									height="10"
@@ -122,21 +128,19 @@ function App() {
 						</div>
 					</div>
 				</div>
-					<Route path="/news" exact component={News} />
-					<Route path="/contacts" exact component={Contacts} />
-					<Route path="/calendar" exact component={Calendar} />
-					<Route path="/weather" exact component={Weather} />
-					<Route path="/pomodoro" exact component={Pomodoro} />
+				<Route path="/news" exact component={News} />
+				<Route path="/contacts" exact component={Contacts} />
+				<Route path="/calendar" exact component={Calendar} />
+				<Route path="/weather" exact component={Weather} />
+				<Route path="/pomodoro" exact component={Pomodoro} />
+				<Route path="/" exact>
+					<button onClick={handleClick}>Get Quote</button>
+					<h1 className="quote">{quotes}</h1>
+				</Route>
 			</Router>
-
-			{/* <button onClick={handleClick}>
-				Get Qoute
-			</button>
-				{qoutes} */}
-
-
-{/* 			<footer>Inspirational quotes provided by <a href="https://zenquotes.io/" target="_blank">ZenQuotes API</a></footer>
- */}			{/* <div className="container-fluid"> */}
+			{/* 			<footer>Inspirational quotes provided by <a href="https://zenquotes.io/" target="_blank">ZenQuotes API</a></footer>
+			 */}{" "}
+			{/* <div className="container-fluid"> */}
 			{/* <Pomodoro /> */}
 			{/* </div>   */}
 			{/*  <footer>

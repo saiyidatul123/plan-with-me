@@ -47,7 +47,7 @@ function Home() {
 				setSeconds(59);
 				setMinutes((state) => state - 1);
 			} else {
-				let minutesOne = displayMessage ? 1 : 4; //24- restart the timer //4 minits for break time
+				let minutesOne = displayMessage ? 1 : 1; //24- restart the timer //4 minits for break time
 				let secondsOne = 59;
 
 				setSeconds(secondsOne);
@@ -64,7 +64,7 @@ function Home() {
 	return (
 		<div className="pomodoro1">
 			<div className="card-body">
-				<h1>Pomodoro</h1>
+				<h1 className="title">Pomodoro</h1>
 				<span>
 					<button onClick={() => setSetting(true)}>Setting</button>
 				</span>
@@ -87,7 +87,7 @@ function Home() {
 						>
 							Pause
 						</button><br/>
-                        <h1>{timerMinutes}:{timerSeconds}</h1>
+                        <h2 className="time">{timerMinutes}:{timerSeconds}</h2>
 						<Setting trigger={setting} setTrigger={setSetting}></Setting>
 					</div>
 				</div>

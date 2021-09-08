@@ -54,10 +54,36 @@ body,html{
 .pomodoro1{
   position: fixed;
   z-index: 3;
-  border: 2px solid yellow;
-  top: 37%;
-  left: 38%;
+ /*  border: 2px solid yellow; */
+  top: 30%;
+  left: 19%;
+  right:19%;
   background: #f5f5f58f;
   border-radius: 25px;
   text-align: center;
+  margin: auto;
+}
+
+.quote{
+  position: fixed;
+  z-index: 3;
+  /* border: 2px solid yellow; */
+  top: 200px;
+  left: 9%;
+  right: 9%;
+  background: #f5f5f58f;
+  border-radius: 25px;
+  text-align: center;
+}
+
+button{
+  padding:10px;
+
+}
+.time{
+  font-size:70px;
+}
+.title{
+ 
+  font-size:85px;
 }
