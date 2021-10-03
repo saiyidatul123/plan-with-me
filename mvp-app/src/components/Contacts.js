@@ -39,7 +39,7 @@ const Contacts = () => {
       .then((data) => {
         setContacts([
           ...contacts,
-          {
+          { // to make the web load faster
             id: data[data.length - 1].id,
             name: input.name,
             phone: input.phone,
@@ -63,10 +63,11 @@ const Contacts = () => {
       })
       .catch((err) => console.log(err));
   };
-  const handleSubmit = (event) => {
+
+  const handleSubmit = event => {
     event.preventDefault();
     addContact();
-    setInput({ name: "", phone: "", birthday: ""});
+    setInput({ name: "", phone: "", birthday: ""}); // if you want empty input box after submit
   };
 
   return (
