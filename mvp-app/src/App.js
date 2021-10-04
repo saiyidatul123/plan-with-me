@@ -134,7 +134,7 @@ function App() {
 				<Route path="/weather" exact component={Weather} />
 				<Route path="/pomodoro" exact component={Pomodoro} />
 				<Route path="/" exact>
-					<button onClick={handleClick}>Get Quote</button>
+					<button className="get-quote" onClick={handleClick}>Get Quote</button>
 					<h1 className="quote">{quotes}</h1>
 				</Route>
 			</Router>
