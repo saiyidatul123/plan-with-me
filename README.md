@@ -50,12 +50,19 @@ The MVP for Plan With Me is the Pomodoro section. The setting for Pomodoro is st
 - Create a new database called mvp: create database mvp;
 - Add a .env file to the main folder of this repository containing the MySQL authentication information for MySQL user. For example:
 
+  ```bash
   DB_HOST=localhost
   DB_USER=root
   DB_NAME=mvp
   DB_PASS=YOURPASSWORD
+  ```
   
   - Run npm run migrate in the main folder of this repository, in a new terminal window.
 
+### Weather API
+- Add an .env file to the mvp-app folder of this repository containing your API key from https://openweathermap.org/
+```bash
+  REACT_WEATHER_API_KEY=YOURAPIKEY
+  ```
 
- _This is a student project that was created at [CodeOp](http://codeop.tech), a full stack development bootcamp in Barcelona._
+ _This is a student project that was created at [CodeOp](http://codeop.tech), a full stack development bootcamp in Kuala Lumpur._
